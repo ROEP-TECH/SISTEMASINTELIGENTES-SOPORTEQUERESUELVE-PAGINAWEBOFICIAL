@@ -36,6 +36,7 @@ function setupCinematicMotion() {
   gsap.to('.hero-art', { yPercent: 22, scale: 1.08, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
   gsap.to('.orbit-a', { rotation: 150, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.2 } });
   gsap.to('.orbit-b', { rotation: -120, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.8 } });
+  gsap.to('.grid-overlay', { backgroundPosition: '0 180px', ease: 'none', scrollTrigger: { trigger: 'main', start: 'top top', end: 'bottom bottom', scrub: 1.5 } });
 
   if (desktop) {
     ScrollTrigger.create({ trigger: '.statement', start: 'top top', end: '+=560', pin: true, pinSpacing: true, scrub: true });
@@ -43,6 +44,22 @@ function setupCinematicMotion() {
   }
 
   gsap.to('.service-bento', { scale: .96, ease: 'none', scrollTrigger: { trigger: '.services', start: 'top 75%', end: 'bottom 20%', scrub: 1 } });
+  gsap.utils.toArray('.section').forEach((section) => {
+    const scene = section.querySelector('.service-bento, .project-list, .method-steps, .contact-box');
+    gsap.fromTo(section, { clipPath: 'inset(5% 0 5% 0)' }, {
+      clipPath: 'inset(0% 0 0% 0)',
+      ease: 'none',
+      scrollTrigger: { trigger: section, start: 'top 92%', end: 'top 38%', scrub: true }
+    });
+    if (scene) {
+      gsap.fromTo(scene, { y: 70, scale: .94 }, {
+        y: 0,
+        scale: 1,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: section, start: 'top 88%', end: 'top 35%', scrub: 1.1 }
+      });
+    }
+  });
   gsap.utils.toArray('.project-image').forEach((image, index) => {
     gsap.fromTo(image, { scale: .88, y: index % 2 ? 35 : -25 }, { scale: 1, y: 0, ease: 'none', scrollTrigger: { trigger: image, start: 'top 95%', end: 'top 35%', scrub: true } });
   });
