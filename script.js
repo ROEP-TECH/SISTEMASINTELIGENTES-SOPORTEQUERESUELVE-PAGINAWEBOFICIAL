@@ -5,9 +5,6 @@ const menuToggle = document.querySelector('.menu-toggle');
 const mainNav = document.querySelector('.main-nav');
 const themeToggle = document.querySelector('.theme-toggle');
 const logos = document.querySelectorAll('.brand img, .site-footer img');
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const speedItems = [...document.querySelectorAll('[data-speed]')];
-let scenes = [...document.querySelectorAll('.scene')];
 let scrollTicking = false;
 body.classList.add('js-ready');
 
@@ -23,23 +20,7 @@ function updateScroll() {
   const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
   progressBar.style.transform = `scaleX(${progress})`;
   header.classList.toggle('is-scrolled', window.scrollY > 30);
-  speedItems.forEach((element) => {
-    const distance = (window.innerHeight / 2 - element.getBoundingClientRect().top) * Number(element.dataset.speed);
-    element.style.setProperty('--parallax-y', `${distance}px`);
-  });
-  scenes.forEach((scene) => {
-    const bounds = scene.getBoundingClientRect();
-    const centerDistance = (window.innerHeight / 2 - (bounds.top + bounds.height / 2)) / window.innerHeight;
-    const sceneProgress = Math.max(0, Math.min(1, 1 - Math.abs(centerDistance) * 1.25));
-    scene.style.setProperty('--scene-progress', sceneProgress.toFixed(3));
-    scene.style.setProperty('--scene-shift', `${centerDistance * -55}px`);
-  });
   scrollTicking = false;
-}
-
-function setMotion(enabled) {
-  body.classList.toggle('motion-off', !enabled);
-  localStorage.setItem('roep-motion', enabled ? 'on' : 'off');
 }
 
 function setTheme(mono) {
@@ -65,6 +46,7 @@ function addPortfolio() {
         <article class="portfolio-card portfolio-lobo reveal"><div class="portfolio-visual lobo-visual"><span class="visual-tag">GRUPO LOBO / DIGITAL</span><div class="shop-screen"><div class="shop-nav"><b>LOBO</b><span>Catalogo　 Carrito</span></div><div class="shop-hero">Encuentra<br><em>lo que buscas.</em></div><div class="shop-products"><i></i><i></i><i></i></div><div class="shop-price"><b>$ 1,249</b><span>Ver producto　→</span></div></div><span class="visual-status">TIENDA DIGITAL</span></div><div class="portfolio-meta"><div><small>COMERCIO DIGITAL</small><h3>Grupo Lobo</h3><p>App web tipo tienda digital para mostrar productos y facilitar pedidos.</p></div><button class="portfolio-toggle" type="button" aria-expanded="false">Ver proyecto <span>+</span></button></div><div class="portfolio-details"><div class="project-carousel"><div class="carousel-track"><div class="carousel-slide"><img src="img/grupo-lobo-01.png" alt="Captura 1 de Grupo Lobo"><span>CAPTURA 01</span></div><div class="carousel-slide"><img src="img/grupo-lobo-02.png" alt="Captura 2 de Grupo Lobo"><span>CAPTURA 02</span></div><div class="carousel-slide"><img src="img/grupo-lobo-03.png" alt="Captura 3 de Grupo Lobo"><span>CAPTURA 03</span></div><div class="carousel-slide"><img src="img/grupo-lobo-04.png" alt="Captura 4 de Grupo Lobo"><span>CAPTURA 04</span></div></div><button class="carousel-prev" type="button" aria-label="Captura anterior">←</button><button class="carousel-next" type="button" aria-label="Captura siguiente">→</button><div class="carousel-dots"></div></div><div class="project-info"><div><small>REFERENCIA</small><p>Experiencia de compra digital para Grupo Lobo.</p></div><div><small>SE HIZO</small><p>Catalogo, tarjetas de producto, precios y flujo de carrito para pedidos.</p></div><div><small>PRIVACIDAD</small><p>Usa imagenes y datos de demostracion.</p></div></div></div></article>
       </div>
     </section>`);
+  document.querySelectorAll('.admin-screen, .shop-screen, .carousel-slide img').forEach((element) => element.remove());
   const portfolioLink = document.querySelector('.main-nav a');
   const heroLink = document.querySelector('.hero-copy .action');
   portfolioLink.href = '#portfolio';
@@ -73,11 +55,6 @@ function addPortfolio() {
   heroLink.firstChild.textContent = 'Ver portfolio ';
   services.querySelector('.eyebrow').textContent = '02 / Servicios';
   services.querySelector('h2').innerHTML = 'Soluciones para<br><em>avanzar mejor.</em>';
-  scenes = [...document.querySelectorAll('.scene')];
-}
-
-function activateScenes() {
-  scenes.forEach((scene) => scene.classList.add('active'));
 }
 
 function setupSectionNavigation() {
@@ -126,8 +103,10 @@ function setupCarousels() {
       dot.setAttribute('aria-label', `Mostrar captura ${index + 1}`);
       dot.addEventListener('click', () => showSlide(index));
       dots.appendChild(dot);
-      image.addEventListener('load', () => slide.classList.add('has-image'));
-      image.addEventListener('error', () => slide.classList.remove('has-image'));
+      if (image) {
+        image.addEventListener('load', () => slide.classList.add('has-image'));
+        image.addEventListener('error', () => slide.classList.remove('has-image'));
+      }
     });
     const showSlide = (index) => {
       current = (index + slides.length) % slides.length;
@@ -164,12 +143,8 @@ window.addEventListener('scroll', () => {
   if (!scrollTicking) { window.requestAnimationFrame(updateScroll); scrollTicking = true; }
 }, { passive: true });
 
-localStorage.removeItem('roep-motion');
-setMotion(true);
-body.classList.add('force-motion');
 setTheme(localStorage.getItem('roep-theme') === 'mono');
 addPortfolio();
-activateScenes();
 updateScroll();
 revealOnScroll();
 setupSectionNavigation();
@@ -178,12 +153,3 @@ setupCarousels();
 
 themeToggle.addEventListener('click', () => setTheme(!body.classList.contains('mono')));
 
-if (!reduceMotion.matches) {
-  const stage = document.querySelector('.hero-stage');
-  stage.addEventListener('pointermove', (event) => {
-    const bounds = stage.getBoundingClientRect();
-    stage.style.setProperty('--mouse-x', `${(event.clientX - bounds.left - bounds.width / 2) * .04}px`);
-    stage.style.setProperty('--mouse-y', `${(event.clientY - bounds.top - bounds.height / 2) * .04}px`);
-  });
-  stage.addEventListener('pointerleave', () => { stage.style.setProperty('--mouse-x', '0px'); stage.style.setProperty('--mouse-y', '0px'); });
-}
