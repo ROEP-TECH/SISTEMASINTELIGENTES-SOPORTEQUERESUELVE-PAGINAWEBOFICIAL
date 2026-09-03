@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ROEP TECH crea sistemas web, sitios web y soluciones de software para negocios que quieren avanzar.">
+  <title>ROEP TECH | Tecnología que mueve negocios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <header class="header">
+    <nav class="nav shell" aria-label="Navegación principal">
+      <a class="logo-link" href="#top" aria-label="ROEP TECH, volver al inicio">
+        <img class="logo logo-light" src="img/LOGO ROEP TECH.png" data-light="img/LOGO ROEP TECH.png" data-dark="img/LOGO ROEP TECH version negro.png" alt="ROEP TECH">
+      </a>
+      <div class="nav-menu" id="nav-menu">
+        <a href="#servicios">Servicios</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#metodo">Método</a>
+        <button class="animation-toggle" type="button" aria-pressed="true"><i data-lucide="sparkles"></i><span>Animaciones: ON</span></button>
+      </div>
+      <div class="nav-tools">
+        <button class="theme-button" type="button" aria-label="Cambiar a tema claro" title="Cambiar tema"><i data-lucide="sun-moon"></i></button>
+        <a class="nav-contact" href="#contacto">Iniciar proyecto <i data-lucide="arrow-up-right"></i></a>
+        <button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu"><i data-lucide="menu"></i></button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-copy reveal">
+        <p class="kicker"><span class="live-dot"></span> Tecnología con propósito</p>
+        <h1>Construimos<br><span>lo que sigue.</span></h1>
+        <p class="hero-description">Sistemas web, sitios digitales y soporte de software para que tu negocio trabaje con más claridad, velocidad y control.</p>
+        <div class="hero-buttons">
+          <a class="button button-blue" href="#contacto">Cuéntanos tu idea <i data-lucide="arrow-up-right"></i></a>
+          <a class="plain-link" href="#proyectos">Ver proyectos <i data-lucide="arrow-down-right"></i></a>
+        </div>
+      </div>
+      <div class="hero-art reveal reveal-delay" aria-label="Panel de control de ROEP TECH">
+        <div class="hero-orbit orbit-a"></div><div class="hero-orbit orbit-b"></div>
+        <div class="terminal-card">
+          <div class="terminal-top"><span><b></b><b></b><b></b></span><small>ROEP_OS / 01</small><i data-lucide="more-horizontal"></i></div>
+          <div class="terminal-content">
+            <span class="terminal-tag">NUEVO PROYECTO</span>
+            <h2>Todo empieza<br><em>con una señal.</em></h2>
+            <div class="signal"><span class="signal-line"></span><span class="signal-line"></span><span class="signal-line"></span><span class="signal-line"></span><span class="signal-line"></span><span class="signal-line"></span><span class="signal-line"></span><span class="signal-line"></span><span class="signal-line"></span><span class="signal-line"></span><i></i></div>
+            <div class="terminal-data"><span><small>ESTADO</small><strong>EN MARCHA</strong></span><span><small>PROGRESO</small><strong>86.4%</strong></span></div>
+          </div>
+        </div>
+        <div class="floating-label label-top"><i data-lucide="sparkles"></i><span>Ideas que<br><strong>sí avanzan</strong></span></div>
+        <div class="floating-label label-bottom"><span class="mini-pulse"></span><span>Soporte<br><strong>en línea</strong></span></div>
+      </div>
+      <div class="hero-index">01 <span>/</span> 04</div>
+    </section>
+
+    <section class="statement shell reveal"><p class="kicker">Una mejor forma de hacer digital</p><p class="statement-text">La tecnología no tiene que sentirse complicada. <strong>Debe ayudarte a ver más claro, decidir más rápido y llegar más lejos.</strong></p></section>
+
+    <section class="services shell section" id="servicios">
+      <div class="section-top reveal"><div><p class="kicker">01 / Servicios</p><h2>Herramientas para<br><span>moverte mejor.</span></h2></div><p>Soluciones pensadas para el punto exacto en el que está tu negocio hoy.</p></div>
+      <div class="service-bento">
+        <article class="service service-large reveal"><span class="service-no">01</span><div class="service-visual visual-system"><i data-lucide="blocks"></i><span></span><span></span><span></span></div><div class="service-copy"><h3>Sistemas<br>web</h3><p>Digitalizamos tus procesos para convertir el desorden en una operación que fluye.</p><a href="#contacto" aria-label="Solicitar sistema web"><i data-lucide="arrow-up-right"></i></a></div></article>
+        <article class="service service-maintenance reveal"><span class="service-no">02</span><div class="service-copy"><i class="service-icon" data-lucide="wrench"></i><h3>Mantenimiento<br>de software</h3><p>Tu equipo listo, actualizado y funcionando sin interrupciones.</p><a href="#contacto" aria-label="Solicitar mantenimiento"><i data-lucide="arrow-up-right"></i></a></div><div class="service-lines"></div></article>
+        <article class="service service-web reveal"><span class="service-no">03</span><div class="service-copy"><i class="service-icon" data-lucide="globe-2"></i><h3>Websites<br>con intención</h3><p>Una presencia digital que se entiende y se recuerda.</p><a href="#contacto" aria-label="Solicitar sitio web"><i data-lucide="arrow-up-right"></i></a></div><div class="service-sphere"></div></article>
+      </div>
+    </section>
+
+    <section class="projects shell section" id="proyectos">
+      <div class="section-top reveal"><div><p class="kicker">02 / Proyectos realizados</p><h2>Trabajo real.<br><span>Impacto visible.</span></h2></div><a class="plain-link" href="#contacto">Hablemos de tu proyecto <i data-lucide="arrow-up-right"></i></a></div>
+      <div class="project-list">
+        <article class="project project-feature reveal"><div class="project-image project-nexo"><span class="project-index">01</span><div class="nexo-ui"><small>NEXO / OPERACIONES</small><strong>Ver el negocio<br><em>en movimiento.</em></strong><div class="nexo-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><span class="project-stamp">SISTEMA WEB</span></div><div class="project-meta"><div><span>Plataforma operativa / 2025</span><h3>Nexo Operaciones</h3></div><i data-lucide="arrow-up-right"></i></div></article>
+        <article class="project reveal"><div class="project-image project-forma"><span class="project-index">02</span><div class="forma-circle"></div><small>FORMA ESTUDIO</small><strong>Forma<br><em>y fondo.</em></strong><span class="project-stamp">SITIO WEB</span></div><div class="project-meta"><div><span>Identidad digital / 2025</span><h3>Forma Estudio</h3></div><i data-lucide="arrow-up-right"></i></div></article>
+        <article class="project reveal"><div class="project-image project-care"><span class="project-index">03</span><div class="care-icon"><i data-lucide="headphones"></i></div><small>ROEP / CARE</small><strong>Soporte que<br><em>resuelve.</em></strong><span class="project-stamp">SOFTWARE</span></div><div class="project-meta"><div><span>Centro de soporte / 2024</span><h3>Roep Care</h3></div><i data-lucide="arrow-up-right"></i></div></article>
+      </div>
+    </section>
+
+    <section class="method shell section" id="metodo">
+      <div class="method-intro reveal"><p class="kicker">03 / Método ROEP</p><h2>Menos vueltas.<br><span>Más avance.</span></h2><p>Trabajamos cerca, hablamos claro y construimos con una idea en mente: que el resultado te sirva de verdad.</p></div>
+      <div class="method-steps"><div class="method-step reveal"><span>01</span><div><i data-lucide="scan-search"></i><h3>Entender</h3><p>Escuchamos el problema antes de proponer la solución.</p></div></div><div class="method-step reveal"><span>02</span><div><i data-lucide="pen-tool"></i><h3>Diseñar</h3><p>Le damos forma a una experiencia fácil de usar.</p></div></div><div class="method-step reveal"><span>03</span><div><i data-lucide="rocket"></i><h3>Avanzar</h3><p>Publicamos, medimos y mejoramos contigo.</p></div></div></div>
+    </section>
+
+    <section class="contact shell section" id="contacto"><div class="contact-box reveal"><div><p class="kicker">04 / Hablemos</p><h2>Tu siguiente<br><span>movimiento.</span></h2><p>Cuéntanos qué necesitas y encontremos la mejor forma de construirlo.</p><a class="button button-white" href="mailto:hola@roeptech.com">hola@roeptech.com <i data-lucide="arrow-up-right"></i></a></div><div class="contact-signal"><span>ROEP</span><i data-lucide="arrow-up-right"></i></div></div></section>
+  </main>
+
+  <footer class="footer shell"><a class="logo-link" href="#top"><img class="logo" src="img/LOGO ROEP TECH.png" data-light="img/LOGO ROEP TECH.png" data-dark="img/LOGO ROEP TECH version negro.png" alt="ROEP TECH"></a><p>© 2026 ROEP TECH · Tecnología que mueve negocios.</p><a href="#top">Volver al inicio <i data-lucide="arrow-up"></i></a></footer>
+  <script src="script.js"></script>
+</body>
+</html>
