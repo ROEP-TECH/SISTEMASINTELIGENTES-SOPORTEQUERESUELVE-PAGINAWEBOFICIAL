@@ -93,6 +93,18 @@ function setTheme(isLight) {
 setTheme(localStorage.getItem('roep-theme') === 'light');
 setAnimations(localStorage.getItem('roep-motion') !== 'off');
 
+body.classList.add('motion-ready');
+const sceneObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) entry.target.classList.add('in-view');
+  });
+}, { threshold: 0.16 });
+
+document.querySelectorAll('.section, .statement').forEach((section) => {
+  section.classList.add('scroll-scene');
+  sceneObserver.observe(section);
+});
+
 themeButton.addEventListener('click', () => {
   setTheme(!body.classList.contains('light'));
 });
@@ -149,6 +161,18 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+
+const nativeMotionStyles = document.createElement('style');
+nativeMotionStyles.textContent = `
+  .motion-ready:not(.no-motion) .scroll-scene { opacity: 0; transform: translateY(64px) scale(.96); filter: blur(7px); transition: opacity .95s ease, transform 1.1s cubic-bezier(.2,.8,.2,1), filter .95s ease; }
+  .motion-ready:not(.no-motion) .scroll-scene.in-view { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  .motion-ready:not(.no-motion) .scroll-scene.in-view .section-top { animation: scene-heading .9s both cubic-bezier(.2,.8,.2,1); }
+  .motion-ready:not(.no-motion) .scroll-scene.in-view .service:nth-child(2), .motion-ready:not(.no-motion) .scroll-scene.in-view .project:nth-child(2), .motion-ready:not(.no-motion) .scroll-scene.in-view .method-step:nth-child(2) { transition-delay: .12s; }
+  .motion-ready:not(.no-motion) .scroll-scene.in-view .service:nth-child(3), .motion-ready:not(.no-motion) .scroll-scene.in-view .project:nth-child(3), .motion-ready:not(.no-motion) .scroll-scene.in-view .method-step:nth-child(3) { transition-delay: .24s; }
+  @keyframes scene-heading { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: translateX(0); } }
+  @media (prefers-reduced-motion: reduce) { .motion-ready .scroll-scene { opacity: 1; transform: none; filter: none; } }
+`;
+document.head.appendChild(nativeMotionStyles);
 
 if (heroArt && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   heroArt.addEventListener('pointermove', (event) => {
